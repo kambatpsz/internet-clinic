@@ -1,0 +1,117 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+          crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            color: #495057;
+        }
+
+        h1 {
+            color: #007bff;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        h4 {
+            text-align: center;
+        }
+
+        .btn-outline-info:hover {
+            color: #fff;
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+    </style>
+    <title>Internet clinic</title>
+</head>
+</head>
+
+<body>
+<div class="container">
+    <h1>Internet clinic</h1>
+    <h4>Patient appointment</h4>
+</div>
+
+<div class="container">
+    <div class="row mt-3">
+        <div class="col-md-3">
+            <a th:href="@{/patient}" class="btn btn-outline-info" role="button"><-back</a>
+        </div>
+    </div>
+    <br>
+    <h4>Adding a new appointment</h4>
+    <div>
+        <div class="container mt-4" style="max-width: 500px;">
+            <div class="card">
+                <div class="card-body">
+                    <form action="#" th:action="@{/patient/doctor/schedule}" method="POST">
+                        <table class="table">
+                            <thead class="table-info">
+                            <tr>
+                                <th>Doctor</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <select class="form-control" id="appointmentDoctor" name="availableDoctor">
+                                        <option th:each="availableDoctor : ${availableDoctorS}"
+                                                th:value="${availableDoctor}"
+                                                th:text="${availableDoctor}"></option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <button type="submit" class="btn btn-outline-info">Schedule</button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <h4>Appointments</h4>
+    <div class="container mt-4" style="max-width: 700px;">
+        <table class="table">
+            <thead class="table-info">
+            <tr>
+                <th>Date of visit</th>
+                <th>Doctor</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="patientVisitDTO : ${patientVisitDTOs}">
+                <form action="#" th:action="@{/patient/appointment/delete}" th:object="${patientVisitDTO}"
+                      method="POST">
+                    <input type="hidden" name="patientVisitId" th:value="${patientVisitDTO.patientVisitId}"/>
+                    <td>
+                        <span th:text="${patientVisitDTO.dateTimeVisit}" id="dateTimeVisit"></span>
+                    </td>
+
+                    <td>
+                        <span th:utext="${patientVisitDTO.doctor.name + ' ' + patientVisitDTO.doctor.surname + ' PWZ: ' + patientVisitDTO.doctor.pwzNumber}"
+                              id="patientVisitDTO.doctor"></span>
+                    </td>
+
+                    <td>
+                        <input type="submit" class="btn btn-outline-danger" value="Delete">
+                    </td>
+                </form>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,14 @@
+spring:
+  profiles: test
+  flyway:
+    enabled: false
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username:
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: validate
+  security:
+    enabled: false

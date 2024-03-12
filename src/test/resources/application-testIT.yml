@@ -1,0 +1,10 @@
+spring:
+  config:
+    activate:
+      on-profile: testIT
+  jpa:
+    hibernate:
+      ddl-auto: validate
+api:
+  nil:
+    url: http://localhost:9999

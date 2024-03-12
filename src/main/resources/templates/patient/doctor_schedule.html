@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+          crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            color: #495057;
+        }
+
+        h1 {
+            color: #007bff;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        h4 {
+            text-align: center;
+        }
+
+        .btn-outline-info:hover {
+            color: #fff;
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+    </style>
+    <title>Internet clinic</title>
+</head>
+</head>
+
+<body>
+<div class="container">
+    <h1>Internet clinic</h1>
+    <h4>Doctor schedule</h4>
+</div>
+
+<div class="container">
+    <div class="row mt-3">
+        <div class="col-md-3">
+            <a th:href="@{/patient/appointment}" class="btn btn-outline-info" role="button"><-back</a>
+        </div>
+    </div>
+    <br>
+    <h4>Current free terms</h4>
+    <div>
+        <div class="container mt-4" style="max-width: 700px;">
+
+                <b>
+                    Doctor: <span th:if="${doctorDTO.name}" th:text="${doctorDTO.name}">NAME</span>
+                    <span th:if="${doctorDTO.surname}" th:text="${doctorDTO.surname}">SURNAME</span>
+                    PWZ: <span th:if="${doctorDTO.pwzNumber}" th:text="${doctorDTO.pwzNumber}">PWZ</span>
+                </b>
+                <table class="table">
+                    <thead class="table-info">
+                    <tr>
+                        <th>Date</th>
+                        <th>Hour</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="doctorAvailability : ${doctorAvailabilityDTOs}">
+                        <form action="#" th:action="@{/patient/appointment/add}" th:object="${doctorAvailabilityDTO}" method="POST">
+                            <input type="hidden" name="pwzNumber" th:value="${doctorDTO.pwzNumber}"/>
+                        <td>
+                            <span th:text="${doctorAvailability.date}" id="doctorAvailability.date"></span>
+                            <input type="hidden" name="date" th:value="${doctorAvailability.date}"/>
+                            <input type="hidden" name="doctorAvailabilityId"
+                                   th:value="${doctorAvailability.doctorAvailabilityId}"/>
+
+                        </td>
+                        <td>
+                            <span th:text="${doctorAvailability.hourFrom}" id="doctorAvailability.hourFrom"></span>
+                            <input type="hidden" name="hourFrom" th:value="${doctorAvailability.hourFrom}"/>
+                            <input type="hidden" name="hourTo" th:value="${doctorAvailability.hourTo}"/>
+                        </td>
+                        <td>
+                            <input type="submit" class="btn btn-outline-success" value="Reserve">
+                        </td>
+                        </form>
+                    </tr>
+                    </tbody>
+                </table>
+
+            <div>
+            </div>
+        </div>
+</body>
+</html>

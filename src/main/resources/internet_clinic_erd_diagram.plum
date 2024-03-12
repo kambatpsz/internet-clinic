@@ -1,0 +1,94 @@
+@startuml
+    skinparam class {
+        BackgroundColor #EEEBDC
+        BorderColor #2D2B2B
+        ArrowColor #2D2B2B
+        FontColor #2D2B2B
+    }
+
+    class Address {
+        + addressId: Integer
+        + country: String
+        + city: String
+        + postalCode: String
+        + address: String
+    }
+
+    class Doctor {
+        + doctorId: Integer
+        + userId: InternetClinicUser
+        + name: String
+        + surname: String
+        + pesel: String
+        + pwzNumber: String
+        + verified: Boolean
+        + address: Address
+        + doctorAvailability: Set<DoctorAvailability>
+        + patientVisit: Set<PatientVisit>
+    }
+
+    class DoctorAvailability {
+        + doctorAvailabilityId: Integer
+        + date: LocalDate
+        + hourFrom: LocalTime
+        + hourTo: LocalTime
+        + reserved: Boolean
+        + doctor: Doctor
+    }
+
+    class Patient {
+        + patientId: Integer
+        + userId: InternetClinicUser
+        + name: String
+        + surname: String
+        + pesel: String
+        + address: Address
+        + patientVisit: Set<PatientVisit>
+    }
+
+    class PatientVisit {
+        + patientVisitId: Integer
+        + dateTimeVisit: LocalDateTime
+        + visitStatus: Boolean
+        + visitNote: String
+        + dateOfCancellation: LocalDateTime
+        + doctor: Doctor
+        + patient: Patient
+    }
+
+    class InternetClinicUser {
+        + userId: Integer
+        + userName: String
+        + email: String
+        + password: String
+        + phone: String
+        + active: Boolean
+        + roles: Set<InternetClinicRole>
+    }
+
+    class InternetClinicRole {
+        + roleId: Integer
+        + role: String
+    }
+
+    class InternetClinicUserRole {
+        + userId: Integer
+        + roleId: Integer
+    }
+
+    Doctor "1" -- "1..*" DoctorAvailability: doctorAvailability
+    Doctor "1" -- "0..*" PatientVisit: patientVisit
+    Doctor "1" -- "1" InternetClinicUser: userId
+    Doctor "1" -- "1" Address: address
+
+    Patient "1" -- "0..*" PatientVisit: patientVisit
+    Patient "1" -- "1" InternetClinicUser: userId
+    Patient "1" -- "1" Address: address
+
+    PatientVisit "1" -- "1" Doctor: doctor
+    PatientVisit "1" -- "1" Patient: patient
+
+    InternetClinicUser "1" -- "1..*" InternetClinicRole: roles
+    InternetClinicUserRole "1" -- "1" InternetClinicUser: userId
+    InternetClinicUserRole "1" -- "1" InternetClinicRole: roleId
+@enduml

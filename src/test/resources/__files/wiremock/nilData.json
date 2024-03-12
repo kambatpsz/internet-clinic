@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Jan",
+    "surname": "Kowalski",
+    "pesel": "12345678901",
+    "pwzNumber": "1234567",
+    "id": "2631"
+  },
+  {
+    "name": "Anna",
+    "surname": "Nowak",
+    "pesel": "23456789012",
+    "pwzNumber": "2345678",
+    "id": "2632"
+  },
+  {
+    "name": "Piotr",
+    "surname": "Dąbrowski",
+    "pesel": "34567890123",
+    "pwzNumber": "3456789",
+    "id": "2633"
+  }
+]

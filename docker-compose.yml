@@ -1,0 +1,45 @@
+version: '3.1'
+services:
+  backend:
+    build: .
+    ports:
+      - 8190:8190
+    environment:
+      - SPRING_PROFILES_ACTIVE=local
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://PostgreSQL:5432/internet_clinic
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+    networks:
+      - internet-clinic-network
+    depends_on:
+      PostgreSQL:
+        condition: service_healthy
+  PostgreSQL:
+    image: postgres:15.0
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_DB=internet_clinic
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - internet-clinic-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  json-server:
+    image: json-server-container
+    volumes:
+      - ./JSONServer:/data
+    ports:
+      - 3000:3000
+    networks:
+      - internet-clinic-network
+volumes:
+  db-data:
+networks:
+  internet-clinic-network:

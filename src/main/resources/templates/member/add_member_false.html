@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+          crossorigin="anonymous">
+
+
+    <title>Internet clinic</title>
+</head>
+<style>
+    body {
+        background-color: #f8f9fa;
+        color: #495057;
+    }
+    .container {
+        max-width: 600px;
+    }
+    h1 {
+        color: #007bff;
+        margin-bottom: 30px;
+    }
+    .btn-outline-info {
+        color: #007bff;
+        border-color: #007bff;
+        width: 30%;
+    }
+    .btn-outline-info:hover {
+        color: #fff;
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+</style>
+<body>
+<div class="container text-center">
+    <h1>Internet clinic</h1>
+    <div class="container">
+        <h3>The user with the given data already exists! </h3>
+        <a th:href="@{/user/new}" class="btn btn-info" role="button">Go back to New member</a>
+    </div>
+</div>
+</body>
+
+</html>

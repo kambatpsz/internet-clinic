@@ -1,0 +1,64 @@
+{
+  "doctors": [
+    {
+      "name": "Jan",
+      "surname": "Kowalski",
+      "pesel": "12345678901",
+      "pwzNumber": "1234567"
+    },
+    {
+      "name": "Anna",
+      "surname": "Nowak",
+      "pesel": "23456789012",
+      "pwzNumber": "2345678"
+    },
+    {
+      "name": "Piotr",
+      "surname": "Wisniewski",
+      "pesel": "34567890123",
+      "pwzNumber": "3456789"
+    },
+    {
+      "name": "Ewa",
+      "surname": "Lewandowska",
+      "pesel": "45678901234",
+      "pwzNumber": "4567890"
+    },
+    {
+      "name": "Miroslaw",
+      "surname": "Dezert",
+      "pesel": "75468963251",
+      "pwzNumber": "12365987"
+    },
+    {
+      "name": "Alicja",
+      "surname": "Majewska",
+      "pesel": "67890123456",
+      "pwzNumber": "6789012"
+    },
+    {
+      "name": "Marek",
+      "surname": "Zielinski",
+      "pesel": "78901234567",
+      "pwzNumber": "7890123"
+    },
+    {
+      "name": "Magda",
+      "surname": "Szymanska",
+      "pesel": "89012345678",
+      "pwzNumber": "8901234"
+    },
+    {
+      "name": "Krzysztof",
+      "surname": "Wojcik",
+      "pesel": "90123456789",
+      "pwzNumber": "9012345"
+    },
+    {
+      "name": "Karolina",
+      "surname": "Kaminska",
+      "pesel": "01234567890",
+      "pwzNumber": "0123456"
+    }
+  ]
+}

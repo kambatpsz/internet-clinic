@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+          crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            color: #495057;
+        }
+
+        h1 {
+            color: #007bff;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        h4 {
+            text-align: center;
+        }
+
+        .btn-outline-info:hover {
+            color: #fff;
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .patient-info {
+        text-align: center;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    </style>
+    <title>Internet clinic</title>
+</head>
+
+<body>
+<div class="container">
+    <h1>Internet clinic</h1>
+</div>
+
+<div class="container">
+    <div class="row mt-3">
+        <div class="col-md-3">
+            <a th:href="@{/patient}" class="btn btn-outline-info" role="button"><-back</a>
+        </div>
+    </div>
+    <br>
+    <h4>Patient Details </h4>
+    <div class="patient-info">
+        <b>
+            Patient: <span th:if="${patientDTO.name}" th:text="${patientDTO.name}">NAME</span>
+            <span th:if="${patientDTO.surname}" th:text="${patientDTO.surname}">SURNAME</span>
+            Pesel: <span th:if="${patientDTO.pesel}" th:text="${patientDTO.pesel}">PESEL</span>
+        </b>
+    </div>
+    <div>
+        <table class="table">
+            <thead class="table-info">
+            <tr>
+                <th>Date of Visit</th>
+                <th>Doctor</th>
+                <th>Note</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="patientVisit : ${patientVisitsDTOs}">
+                <td th:text="${patientVisit.dateTimeVisit}"></td>
+                <td th:text="${patientVisit.doctor.name + ' ' + patientVisit.doctor.surname}"></td>
+                <td th:text="${patientVisit.visitNote}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <br>
+    <br>
+</div>
+</body>
+</html>
